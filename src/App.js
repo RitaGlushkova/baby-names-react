@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import BabyNamesData from "./babyNamesData.json";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Search from "./Search";
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const search = (searchVal) => {
+    setSearchTerm(searchVal);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Search search={search} />
+      <div className="container">
+        <ul className="row row-cols-10">
+          {BabyNamesData.filter((name) =>
+            name.name.toLowerCase().includes(searchTerm.toLowerCase())
+          ).map((babyName) => (
+            <li
+              className={
+                babyName.sex === "m"
+                  ? "col backgroundGreen"
+                  : "col backgroundOrange"
+              }
+              key={babyName.id}
+            >
+              {babyName.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }

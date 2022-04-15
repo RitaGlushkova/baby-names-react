@@ -6,7 +6,20 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.col {
+  margin: 5px;
+  width: 60px;
+}
+.backgroundGreen {
+  background-color: green;
+}
+.backgroundOrange {
+  background-color: orange;
+}
+ul {
+  padding-inline-start: 0px;
+  list-style: none;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
